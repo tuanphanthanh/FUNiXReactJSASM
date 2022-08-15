@@ -53,6 +53,7 @@ class StaffList extends Component {
   }
     render() {
          const text =  <h6><Alert color="primary">Bấm vào tên nhân viên để xem thông tin</Alert> </h6>
+         const text2 =  <h6><Alert color="primary">Bấm vào nút màu cam để trở về trang chủ</Alert></h6>
         const StaffList = this.props.staffs.filter((item, index) => index < 6).map((staff) => {
             return (
               <div key={staff.id} className= {this.state.currentClass}>
@@ -70,7 +71,7 @@ class StaffList extends Component {
             <div className="row">           
                   {StaffList}
                   {text}
-                  
+                  {text2}
 
             </div>
             <div className='row'>

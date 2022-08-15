@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import React from 'react';
-import {Navbar, NavbarBrand}from 'reactstrap';
+import {Button, Navbar, NavbarBrand}from 'reactstrap';
 import StaffList from './components/StaffListComponent';
 import './App.css';
 import { STAFFS } from './shared/staffs';
@@ -20,7 +20,7 @@ class App extends Component {
       <div className="container-fluid">
         <Navbar dark color="primary">
           <div className="container">
-            <NavbarBrand href="/">Ứng dụng quản lý nhân sự v1.0</NavbarBrand>
+            <NavbarBrand href="/"><Button color="warning">Ứng dụng quản lý nhân sự v1.0 </Button></NavbarBrand>
           </div>
         </Navbar>
        <StaffList staffs = {this.state.staffs}/>
