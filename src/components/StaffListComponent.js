@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
-import { Card, CardImg, Alert, CardText, CardBody, CardTitle } from 'reactstrap';
-import dateFormat from 'dateformat'; 
+import { Card, CardImg, Alert, CardText, CardBody, CardTitle,Button } from 'reactstrap';
+import dateFormat from 'dateformat'; ;
 class StaffList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           selectedStaff: null
-        }
+           selectedStaff: null,
+           currentClass: "col-12 col-md-6",
+          }
     }
+    colTwo = () => {
+      this.setState({ currentClass: 'col-12 col-md-6'});
+  }
+    colThree = () => {
+      this.setState({ currentClass: 'col-12 col-md-4'});
+  }
+  colSix = () => {
+    this.setState({ currentClass: 'col-12 col-md-2'});
+}
 
     onStaffSelect(staff) {
       this.setState({selectedStaff: staff})
     }
+  
+
+
     renderStaff(staff){
       if(staff != null) {
         return(
@@ -29,7 +42,12 @@ class StaffList extends Component {
         )
       }    else {
       return(
-        <div></div>
+        <div>
+           <Button onClick={this.colTwo} color="primary">2 cot</Button>
+          <Button onClick={this.colThree} color="primary">3 cot</Button>
+                  <Button onClick={this.colSix} color="primary">6 cot</Button>
+                 
+        </div>
       );
     }
   }
@@ -37,20 +55,23 @@ class StaffList extends Component {
          const text =  <h6><Alert color="primary">Bấm vào tên nhân viên để xem thông tin</Alert> </h6>
         const StaffList = this.props.staffs.filter((item, index) => index < 6).map((staff) => {
             return (
-              <div key={staff.id} className="col-12 col-md-5 m-1">
+              <div key={staff.id} className= {this.state.currentClass}>
                 <Card color="info" onClick={()=> this.onStaffSelect(staff)}>        
-            
                     <CardTitle>{staff.name}</CardTitle>       
                 </Card>
-             
+  
               </div>
             );
         });
+
+        
         return (
-          <div  className="container">
+          <div  className="container-fluid">
             <div className="row">           
                   {StaffList}
                   {text}
+                  
+
             </div>
             <div className='row'>
             {this.renderStaff(this.state.selectedStaff)}
