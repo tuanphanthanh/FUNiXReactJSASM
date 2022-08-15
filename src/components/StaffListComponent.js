@@ -32,8 +32,8 @@ class StaffList extends Component {
            <CardImg width="100%"  src={staff.image} alt={staff.name}/>
            <CardBody>
               <CardTitle tag="h5"> Họ và tên {staff.name}</CardTitle>
-              <CardText >Ngày sinh: {dateFormat(staff.doB, "fullDate")}</CardText>
-              <CardText>Ngày vào công ty: {staff.startDate}</CardText>
+              <CardText >Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
+              <CardText>Ngày vào công ty: {dateFormat(staff.startDate,"dd/mm/yyyy")}</CardText>
               <CardText>Phòng ban: {staff.department.name}</CardText>
               <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
               <CardText>Số ngày làm thêm: {staff.overTime}</CardText>
