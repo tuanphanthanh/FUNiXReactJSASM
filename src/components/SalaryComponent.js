@@ -58,18 +58,20 @@ const sortedWithCondition = () => {
                   <BreadcrumbItem active>Bảng lương</BreadcrumbItem>
               </Breadcrumb>
               <div className="col-12">
-                  <h3>Bảng lương</h3>
+              <div className='row'>
+                <h2><Badge color="warning">Bảng lương</Badge></h2>        
+            </div>
                   <hr />
               </div>    
           
               <div >
               <UncontrolledDropdown group>
-  <Button color="primary">
+  <Button color="secondary">
     Lọc
   </Button>
   <DropdownToggle
     caret
-    color="primary"
+    color="secondary"
   />
   <DropdownMenu>
     <DropdownItem header>

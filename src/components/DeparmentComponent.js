@@ -33,7 +33,9 @@ const Department = (props) => {
                   <BreadcrumbItem active>Phòng ban</BreadcrumbItem>
               </Breadcrumb>
               <div className="col-12">
-                  <h3>Phòng ban</h3>
+              <div className='row'>
+                <h2><Badge color="warning">Phòng ban</Badge></h2>        
+            </div>
                   <hr />
               </div>                
           </div>
