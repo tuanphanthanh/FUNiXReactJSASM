@@ -76,11 +76,11 @@ const sortedWithCondition = () => {
       Mức lương
     </DropdownItem>
     <DropdownItem  onClick={() => setSortType("acc")}>
-GIảm dần
+Tăng dần
     </DropdownItem>
 
     <DropdownItem onClick ={() =>setSortType("dec") }>
-    Tăng dần
+    Giảm dần
     </DropdownItem>
 
     
