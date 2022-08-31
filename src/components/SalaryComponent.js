@@ -1,11 +1,14 @@
 import React from 'react'
-import { Card, CardImg, Alert, CardText, CardBody, CardTitle,Button,Badge, CardGroup,CardSubtitle,CardFooter } from 'reactstrap';
+import { Card, CardImg, Alert, CardText, CardBody, CardTitle,Button,Badge, CardGroup,CardSubtitle,CardFooter ,DropdownToggle,DropdownItem,UncontrolledDropdown,DropdownMenu
+   } from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import {useState} from "react";
 
- 
+
 function RenderSala ({staff }) {
+
   const Cal=(staff)=>parseInt(staff.salaryScale)*3000000 +parseInt(staff.overTime)*200000
   return (
       <Card>  
@@ -18,16 +21,28 @@ function RenderSala ({staff }) {
   lương:  {Cal(staff)}
   </CardFooter>
       </Card>
-
-
-
-
   );
 }
 
-
 const Salary = (props) => {
-  const salary = props.staffs.map((staff) => {
+
+    const Cal=(staff)=>parseInt(staff.salaryScale)*3000000 +parseInt(staff.overTime)*200000
+    const [sortType, setSortType] = useState("")
+ 
+const sortedWithCondition = () => {
+
+    const sorted = props.staffs.sort((a,b)=> Cal(a)>Cal(b)? 1: -1)
+ 
+    if(sortType === "acc"){
+        return sorted
+    }else {
+        return sorted.reverse()
+    }
+   
+}
+
+  const salary = sortedWithCondition().map((staff) => {
+  
       return (
         <div key={staff.id} className="col-12 col-md-6 col-lg-4 mt-1">
          <RenderSala staff ={staff} />
@@ -45,8 +60,36 @@ const Salary = (props) => {
               <div className="col-12">
                   <h3>Bảng lương</h3>
                   <hr />
-              </div>                
+              </div>    
+          
+              <div >
+              <UncontrolledDropdown group>
+  <Button color="primary">
+    Lọc
+  </Button>
+  <DropdownToggle
+    caret
+    color="primary"
+  />
+  <DropdownMenu>
+    <DropdownItem header>
+      Mức lương
+    </DropdownItem>
+    <DropdownItem  onClick={() => setSortType("acc")}>
+GIảm dần
+    </DropdownItem>
+
+    <DropdownItem onClick ={() =>setSortType("dec") }>
+    Tăng dần
+    </DropdownItem>
+
+    
+  </DropdownMenu>
+</UncontrolledDropdown>
+    </div>
           </div>
+
+          
           <div className="row">
               {salary}
           </div>

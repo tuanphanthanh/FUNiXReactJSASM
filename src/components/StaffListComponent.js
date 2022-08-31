@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { Card, CardImg, Alert, CardText, CardBody, CardTitle,Button,Badge } from 'reactstrap';
 import dateFormat from 'dateformat'; 
+import Search from './SearchComponent';
 
 class StaffList extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class StaffList extends Component {
                 <Card className='mx-0 mt-2 mb-2' color="info" >   
                 <Link to={`/home/${staff.id}`} >
                     <CardImg top  width='100%'  src={staff.image} alt={staff.name}/>
-                    <CardTitle  className="text-center">{staff.name}</CardTitle>       
+                    <CardTitle  className="text-center light ">{staff.name}</CardTitle>       
                     </Link>          
                 </Card>
             
@@ -45,7 +46,7 @@ class StaffList extends Component {
                 </Breadcrumb>             
             </div>
               <div className='row'>
-                <h2><Badge color="warning">Nhân viên</Badge></h2>            
+                <h2><Badge color="warning">Nhân viên</Badge></h2>        
             </div>
             <div className="row">    
                   {StaffList}             
