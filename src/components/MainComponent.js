@@ -12,22 +12,33 @@ import Deparment from './DeparmentComponent';
 import StaffDetail from './StaffDetailComponent';
 import { DEPARTMENTS } from '../shared/staffs';
 import Department from './DeparmentComponent';
-import Search from './SearchComponent';
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      staffs: STAFFS,
-      deps :DEPARTMENTS
-    };
-  }
- 
 
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+
+
+const mapStateToProps = state => {
+  return {
+    staffs: state.staffs,
+    deps: state.deps,
+ 
+  }
+}
+  
+
+
+
+class Main extends Component {
+  
   render() {
+
+    let clone= this.props.staffs
+    localStorage.setItem('clone', JSON.stringify(clone));
+    let cloneStore = JSON.parse(localStorage.getItem('cloneStore'))||JSON.parse(localStorage.getItem('clone'))
+    
     const StaffWithId = ({match}) => {
       return(
-          <StaffDetail staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]} 
+          <StaffDetail staff={cloneStore.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]} 
           />
       );
     };
@@ -36,11 +47,10 @@ class Main extends Component {
       <div className="container-fluid">
            <Header/>   
        <Switch>
-       <Route  exact path='/home' component={() => <StaffList staffs={this.state.staffs} />} />
+       <Route  exact path='/home' component={() => <StaffList staffs={cloneStore} />} />
        <Route  path='/home/:staffId' component={StaffWithId} />
-       <Route path='/salary' component={() => <Salary staffs={this.state.staffs} />} /> 
-       <Route path='/deparment' component={() => <Department deps={this.state.deps} />} /> 
-       <Route path='/search' component={() => <Search staffs={this.state.staffs} />} /> 
+       <Route path='/salary' component={() => <Salary staffs={cloneStore} />} /> 
+       <Route path='/deparment' component={() => <Department deps={this.props.deps} />} /> 
        <Redirect to="/home" />
           </Switch>
         
@@ -52,4 +62,4 @@ class Main extends Component {
   
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
