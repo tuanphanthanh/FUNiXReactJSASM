@@ -8,14 +8,7 @@ import dateFormat from 'dateformat';
 
 
 const StaffDetail=(props)=> {
-    const department = function(props) {
-        let departmentName = props.staff.department
-        if(departmentName==undefined){
-            return props.staff.department.name
-        }else {
-            return  departmentName 
-        }
-    }
+    
   return (
       <div className="container">
       <div className="row">
